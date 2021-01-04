@@ -3,11 +3,13 @@ import sys
 import pandas as pd
 
 with open(sys.argv[1], 'r') as logFile:
-    if ('event' in sys.argv[1]) and (('GPS' not in sys.argv[1]) or ('GPA' not in sys.argv[1])):
+    fname = sys.argv[1].lower()
+    # print(fname)  * REMOVE full directory/path i.e. only include filename
+    if ('event' in fname) and (('gps' not in fname) and ('gpa' not in fname)):
         logType = 'event'
-    elif ('GPS' in sys.argv[1]) and (('event' not in sys.argv[1]) or ('GPA' not in sys.argv[1])):
+    elif ('gps' in fname) and (('event' not in fname) and ('gpa' not in fname)):
         logType = 'gps'
-    elif ('GPA' in sys.argv[1]) and (('event' not in sys.argv[1]) or ('GPS' not in sys.argv[1])):
+    elif ('gpa' in fname) and (('event' not in fname) and ('gps' not in fname)):
         logType = 'gpa'
     else:
         print("* Log file name did not include a log file keyword ('event', 'GPS', or 'GPA').\n"
