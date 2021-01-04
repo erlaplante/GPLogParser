@@ -11,5 +11,5 @@ Accepts below logs as command line input. Will automatically parse associated lo
 Accepted Logs:
 Default name - Keyword
 pan_gp_event.log - event
-PanGPA.log - GPA
 PanGPS.log - GPS
+PanGPA.log - GPA

@@ -3,16 +3,19 @@ import sys
 import pandas as pd
 
 with open(sys.argv[1], 'r') as logFile:
-    if ('event' in sys.argv[1]) and ('GPS' not in sys.argv[1]):
+    if ('event' in sys.argv[1]) and (('GPS' not in sys.argv[1]) or ('GPA' not in sys.argv[1])):
         logType = 'event'
-    elif ('GPS' in sys.argv[1]) and ('event' not in sys.argv[1]):
+    elif ('GPS' in sys.argv[1]) and (('event' not in sys.argv[1]) or ('GPA' not in sys.argv[1])):
         logType = 'gps'
+    elif ('GPA' in sys.argv[1]) and (('event' not in sys.argv[1]) or ('GPS' not in sys.argv[1])):
+        logType = 'gpa'
     else:
         print("* Log file name did not include a log file keyword ('event', 'GPS', or 'GPA').\n"
               "Or multiple keywords were found.\n\n"
               "Enter a number for your log file type:\n"
               "(1) pan_gp_event.log\n"
-              "(2) PanGPS.log or PanGPA.log")
+              "(2) PanGPS.log\n"
+              "(3) PanGPA.log")
     logData = logFile.read()
 
 if logType == 'event':
