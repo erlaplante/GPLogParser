@@ -29,14 +29,14 @@ else:
                '3': 'GPA_Log'}.get(logNumInput)
 
 if logType == 'Event_Log':
-    # Regex for two digit year substitution.
-    sub_pattern = re.compile(r'(\d\d\/\d\d\/)\d\d(\d\d)')
+    # Regex to check for four digit year starting with '00' (assumed logging error).
+    sub_pattern = re.compile(r'(\d\d\/\d\d\/)00(\d\d)')
     
     # Regex for 'pan_gp_event.log' columns.
-    pattern = re.compile(r'(\d\d\/\d\d\/\d\d) (\d\d):(\d\d):(\d\d\.\d\d\d) \[(\w+)\s?\]: (.*)')
+    pattern = re.compile(r'(\d\d\/\d\d\/\d\d\d\d) (\d\d):(\d\d):(\d\d\.\d\d\d) \[(\w+)\s?\]: (.*)')
     
-    # Change four digit year to two.
-    subbedData = sub_pattern.sub(r'\1\2', logData)
+    # Substitute '00' for '20' if found in four digit year.
+    subbedData = sub_pattern.sub(r'\g<1>20\g<2>', logData)
     
     # Make a list of tuples from 'subbedData' and create DataFrame.
     data = pattern.findall(subbedData)
@@ -48,6 +48,9 @@ else:
     # Make a list of tuples from 'logData' and create DataFrame.
     data = pattern.findall(logData) 
     df = pd.DataFrame(data, columns = ['Code1', 'Type', 'Code2', 'Date', 'HH', 'MM', 'SS:SSS', 'LogOutput'])
+
+# Convert date format to display the year first for sorting.
+df['Date'] = pd.to_datetime(df.Date).dt.date
 
 print('Summarized log output:\n')
 print(df)
