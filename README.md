@@ -18,20 +18,20 @@ Accepts path of the log file intending to be parsed during execution. Will autom
 | PanGPS.log | GPS |
 | PanGPA.log | GPA |
 
+##### Usage Example:
+`python .\gp_log_parser.py .\GlobalProtectLogs\pan_gp_event.log`
+
 ##### Latency Data:
 Latency data is pulled from PanGPS logs taken during initial connection for best gateway determination. It is unclear what -1 ms means as a latency value which may sometimes be recorded. Due to this the latency statistics are calculated both, without and with -1. Line graph excludes -1 ms data entirely. 
 
 ##### Pivot Table:
 By default a pandas Pivot Table is created if any explicit Errors are in the given log. A PivotTable with Excel may be useful for analysis across the full range of logs. This can easily be created with a table from the first sheet of logs and using the PivotTable options below as a guide:
 
-<img align="left" width="191" height="140" src="https://github.com/erlaplante/GPLogParser/blob/master/images/pt-selection.jpg?raw=true">
+![alt text](https://github.com/erlaplante/GPLogParser/blob/master/images/pt-selection.jpg?raw=true)
 
 ![alt text](https://github.com/erlaplante/GPLogParser/blob/main/images/pt-create-menu.jpg?raw=true)
 
 ![alt text](https://github.com/erlaplante/GPLogParser/blob/main/images/pt-field-filter.jpg?raw=true)
-
-##### Usage Example:
-`python .\gp_log_parser.py .\GlobalProtectLogs\pan_gp_event.log`
 
 ##### Reference to attain logs:
 [GlobalProtect-Event-Log-for-Diagnosis](https://docs.paloaltonetworks.com/globalprotect/5-0/globalprotect-app-new-features/new-features-released-in-gp-agent-5_0/globalprotect-event-log-for-diagnosis.html)
