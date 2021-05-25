@@ -27,7 +27,7 @@ Latency data is pulled from PanGPS logs taken during initial connection for best
 ##### Pivot Table:
 By default a pandas Pivot Table is created if any explicit Errors are in the given log. A PivotTable with Excel may be useful for analysis across the full range of logs. This can easily be created with a table from the first sheet of logs and using the PivotTable options below as a guide:
 
-![alt text](https://github.com/erlaplante/GPLogParser/blob/master/images/pt-selection.jpg?raw=true)
+![alt text](https://github.com/erlaplante/GPLogParser/blob/main/images/pt-selection.jpg?raw=true)
 
 ![alt text](https://github.com/erlaplante/GPLogParser/blob/main/images/pt-create-menu.jpg?raw=true)
 
