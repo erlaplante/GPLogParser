@@ -34,6 +34,8 @@ else:
                '2': 'GPS_Log',
                '3': 'GPA_Log'}.get(logNumInput)
 
+latency_logs_available = False
+
 if logType == 'Event_Log':
     # Regex to check for four digit year starting with '00' (assumed logging error).
     sub_pattern = re.compile(r'(\d\d\/\d\d\/)00(\d\d)')
@@ -55,7 +57,6 @@ else:
     data = pattern.findall(logData) 
     df = pd.DataFrame(data, columns = ['Code1', 'Type', 'Code2', 'Date', 'HH', 'MM', 'SS:SSS', 'LogOutput'])
 
-    latency_logs_available = False
     # Parse latency stats if available, compute Mean, Median, and plot by Datetime.
     if logType == 'GPS_Log':
         if not (df.query('Code2=="( 953)"').empty):
